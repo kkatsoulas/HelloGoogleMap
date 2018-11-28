@@ -58,15 +58,16 @@
 	
 	    function getLocation() {
 		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(setPosition);
+			navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout: 10000, enableHighAccuracy: false});
 		} else { 
 			alert("Geolocation is not supported by this browser.");
 		}
 	}
 	
-		function setPosition() {
+	function onSuccess() {
 		latLong = new google.maps.LatLng(position.coords.latitude , position.coords.longitude);
 	}
+	function onError(){}
 
     </script>
     <style type="text/css">
