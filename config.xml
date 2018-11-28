@@ -25,6 +25,9 @@
     </platform>
     <preference name="phonegap-version" value="cli-8.0.0" />
     <preference name="android-minSdkVersion" value="19" />
+	<plugin name="cordova-plugin-geolocation">
+		<variable name="API_KEY_FOR_ANDROID" value="AIzaSyBZHoCTp3CGNODqzM8H8L9dTBBFtF55Em4" />
+	</plugin>
     <plugin name="cordova-plugin-googlemaps">
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyBZHoCTp3CGNODqzM8H8L9dTBBFtF55Em4" />
         <variable name="API_KEY_FOR_IOS" value="AIzaSyBZHoCTp3CGNODqzM8H8L9dTBBFtF55Em4)" />

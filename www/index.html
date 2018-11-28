@@ -4,6 +4,8 @@
     <meta name="viewport" content="width=device-width">
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript">
+	var latLong;
+	
     document.addEventListener("deviceready", function() {
       var div = document.getElementById("map_canvas");
 
@@ -20,7 +22,7 @@
         'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyBZHoCTp3CGNODqzM8H8L9dTBBFtF55Em4',
         'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyBZHoCTp3CGNODqzM8H8L9dTBBFtF55Em4'
       });
-
+		getLocation();
       // Create a Google Maps native view under the map_canvas div.
       var map = plugin.google.maps.Map.getMap(div);
 
@@ -30,7 +32,7 @@
 
         // Move to the position with animation
         map.animateCamera({
-          target: {lat: 37.422359, lng: -122.084344},
+          target: {lat: latLong.lat, lng: latLong.lng},
           zoom: 17,
           tilt: 60,
           bearing: 140,
@@ -39,7 +41,8 @@
 
         // Add a maker
         var marker = map.addMarker({
-          position: {lat: 37.422359, lng: -122.084344},
+		
+          position: {lat: latLong.lat, lng: latLong.lng},
           title: "Welecome to \n" +
                  "Cordova GoogleMaps plugin for iOS,Android and Browser!",
           snippet: "This plugin is awesome!",
@@ -52,6 +55,18 @@
       });
 
     }, false);
+	
+	    function getLocation() {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(setPosition);
+		} else { 
+			alert("Geolocation is not supported by this browser.");
+		}
+	}
+	
+		function setPosition() {
+		latLong = new google.maps.LatLng(position.coords.latitude , position.coords.longitude);
+	}
 
     </script>
     <style type="text/css">
